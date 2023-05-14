@@ -19,6 +19,8 @@ const createTask = async (req, res) => {
       "completed": Boolean(completed) || false
     };
 
+    dataTasks.push(newTask)
+
     const isSuccess = dataTasks.filter((task) => task.id === id).length > 0;
     if (isSuccess) {
       return res.status(200).json({
@@ -32,7 +34,7 @@ const createTask = async (req, res) => {
   } catch (err) {
     return res.status(500).json({
       success: false,
-      message: "Something wrong",
+      message: "Internal Server Error",
     });
   }
 };
